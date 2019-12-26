@@ -5,6 +5,8 @@ namespace App\Form;
 use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -20,13 +22,34 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('email', EmailType::class)
-        ->add('first_name', TextType::class)
-        ->add('last_name', TextType::class)
+        ->add('email', EmailType::class,[
+            'attr' => array(
+                 'placeholder' => 'Email',
+            ),
+            'label' => false,
+        ])
+        ->add('first_name', TextType::class,[
+            'attr' => array(
+                 'placeholder' => 'First Name',
+            ),
+            'label' => false,
+        ])
+        ->add('last_name', TextType::class,[
+            'attr' => array(
+                 'placeholder' => 'Last Name',
+            ),
+            'label' => false,
+        ])
         ->add('birthdate')
-            ->add('plainPassword', PasswordType::class, [
+            ->add('plainPassword', RepeatedType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
+                'type' => PasswordType::class,
+                'invalid_message' => 'The password fields must match.',
+                'options' => ['attr' => ['class' => 'password-field']],
+                'required' => true,
+                'first_options'  => ['label' => false,'attr' => array('placeholder' => 'Password', ),],
+                'second_options' => ['label' => false,'attr' => array('placeholder' => 'Confirm Password', ),],            
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
@@ -39,7 +62,9 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+                
             ])
+
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -48,8 +73,9 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('register', SubmitType::class)
-           
+            ->add('register', SubmitType::class,[    'attr' => ['class' => 'btn btn-primary mx-auto d-block'],
+            ])
+            
         ;
     }
 

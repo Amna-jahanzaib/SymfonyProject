@@ -41,17 +41,18 @@
         </label>
     </div>
     
-    <div>
+    <div class="form-group  mb-3 text-center">
     <button class="btn btn-primary" type="submit">
         Sign in
     </button>
-    <p class="float-left">
-        <a href="{{ path('app_register')}}" class="">Didn't have an account?  Register now</a>
-    </p>
-    </div>
-    
-   
+    </div> 
 </form>
+    <div class=" text-center">
+        <p>
+            <a href="{{ path('app_register')}}" class="btn btn-link">Didn't have an account?  Register now</a>
+        </p>
+    </div>
+
 
 
 {% endblock %}

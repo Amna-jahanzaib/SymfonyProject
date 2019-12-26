@@ -5,10 +5,13 @@
 {% block body %}
 
     {{ form_start(registrationForm, {'attr': {'class': 'border border-light p-5'} }) }}
-    <h1 class="text-center h3 mb-3 font-weight-normal">Sign up</h1>
-
+    <h1 class="text-center h3 mb-3 font-weight-normal">Sign up</h1>        
     {{ form_end(registrationForm) }}
     
-
+    <div class=" text-center">
+        <p>
+            <a href="{{ path('app_login')}}" class="btn btn-link">Already have an account?  Login now</a>
+        </p>
+    </div>
 
 {% endblock %}
