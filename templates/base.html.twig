@@ -4,9 +4,20 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" id="fontawesome-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+       
     </head>
     <body>
+    
+    <div class="wrapper fadeInDown">
+    <div class="col-sm-4 offset-4">      
         {% block body %}{% endblock %}
+    </div>    
         {% block javascripts %}{% endblock %}
+    </div>
+
     </body>
 </html>

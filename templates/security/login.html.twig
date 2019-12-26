@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in{% endblock %}
+
+{% block body %}
+
+<form method="post"  class=" border border-light p-5" >
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+    <h1 class="h3 mb-3 font-weight-normal text-center">Sign in</h1>
+    <div class="input-group form-group mb-3 ">
+          <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+            <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fa fa-envelope"></span>
+            </div>  
+            </div>
+    </div>
+    <div class="input-group  mb-3 form-group">
+        <input type="password" name="password" id="inputPassword" class="form-control"  placeholder="Password" required>
+            <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fa fa-lock"></span>
+            </div>
+            </div> 
+    </div>
+
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+    <div class="checkbox  mb-3 ">
+        <label>
+            <input type="checkbox" name="_remember_me"> Remember me
+        </label>
+    </div>
+    
+    <div>
+    <button class="btn btn-primary" type="submit">
+        Sign in
+    </button>
+    <p class="float-left">
+        <a href="{{ path('app_register')}}" class="">Didn't have an account?  Register now</a>
+    </p>
+    </div>
+    
+   
+</form>
+
+
+{% endblock %}
